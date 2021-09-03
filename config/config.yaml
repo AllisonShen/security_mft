@@ -1,0 +1,4 @@
+exp_name: 'parse_mft_check_same_values'
+data_path: '/content/drive/MyDrive/security_mft/dfxml_files/'
+output_path: '/content/drive/MyDrive/security_mft/output/'  
+mode:  'test' #run or test
