@@ -37,7 +37,7 @@ np.random.seed(seed)
 
 pathToDxml = conf['data_path']
 
-output_path =f"{conf['output_path']}{seed}" 
+output_path =f"{conf['output_path']}/{seed}" 
 try: 
     os.mkdir(output_path) 
     print(f"Directory {output_path} created")
@@ -45,7 +45,6 @@ except OSError as error:
     print(error) 
 
 mode = conf['mode']
-one_file_path = conf['dfxml_path']
 
 # print(pathToDxml)
 # print(output_path)
@@ -92,7 +91,6 @@ def parseDxml_lxml(pathToFile):
   print(f"output_path_byte_run: {csv_filename_byte_run}")
   end_time = datetime.now()
   print(f"Duration of parsing data for {os.path.basename(pathToFile)[:-6]}: {end_time - start_time}")
-  print(f"csv_filename_byte_run: {csv_filename_byte_run}")
   return csv_filename_byte_run
 
 def dictAssign(tempDict, key, item):
@@ -188,24 +186,7 @@ def showInfo_lxml(root):
 
 #main
 test = 0
-if(pathToDxml!= None):
-  print("Interate the folder...")
-  for eachFile in glob.glob(f"{pathToDxml}/*.dfxml"):
-    print(f"parsing {eachFile} ...")
-    # if (os.path.exists(f"{pathToDxml}/parse_result_{os.path.basename(eachFile)[:-6]}.csv")):
-    #   print(f"{pathToDxml}/parse_result_{os.path.basename(eachFile)[:-6]}.csv exists, move to next dfxml file.")
-    #   continue
-    
-    # print(f"size (bytes): {os.path.getsize(eachFile)}")
-    # print(f"basename (no extention): {os.path.basename(eachFile)[:-6]}")
-    last_output_csv_file = parseDxml_lxml(eachFile)
-    test+=1
-    if(mode == "test"):
-      if(test==0):
-        break
-elif(one_file_path != None):
-  print("Parse only file...")
-  eachFile = one_file_path
+for eachFile in glob.glob(f"{pathToDxml}/*.dfxml"):
   print(f"parsing {eachFile} ...")
   # if (os.path.exists(f"{pathToDxml}/parse_result_{os.path.basename(eachFile)[:-6]}.csv")):
   #   print(f"{pathToDxml}/parse_result_{os.path.basename(eachFile)[:-6]}.csv exists, move to next dfxml file.")
@@ -215,14 +196,12 @@ elif(one_file_path != None):
   # print(f"basename (no extention): {os.path.basename(eachFile)[:-6]}")
   last_output_csv_file = parseDxml_lxml(eachFile)
   test+=1
-  # if(mode == "test"):
-  #   if(test==0):
-  #     break
-else:
-  print("both folder path and file path == None")
-
+  if(mode == "test"):
+    if(test==0):
+      break
 print(f"the following columns has duplicated values: {setDuplicate}")
 print(f"value of the len(setDuplicate): {len(setDuplicate)}")
+
 #show duration
 end_time_total = datetime.now()
 print('Duration of finishing parsing all dfxml files: {}'.format(end_time_total - start_time))
