@@ -1,0 +1,14 @@
+exp_name: 'parse_temp.dfxml_test_fourth_fifth'
+data_path: 
+dfxml_path: './temp.dfxml'
+output_path: './output/'  
+mode:  'run' #run or test
+
+IDIFF2_PATH: '/media/khan/resident_files/dfxml-master/python/idifference2.py'
+BLOCK_SIZE: 512 # 512,4096,... use image drive block size
+SECTOR_SIZE: 512
+IMAGE_LIST: [ '/media/khan/CNIT523/project/fourth.img',
+        '/media/khan/CNIT523/project/fifth.img',
+        '/media/khan/CNIT523/project/sixth.img',
+        '/media/khan/CNIT523/project/seventh.img']
+HAVE_TEMP_DFXML: True 
