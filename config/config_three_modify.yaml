@@ -1,0 +1,5 @@
+exp_name: 'parse_dfxml_three_modify'
+data_path: 
+dfxml_path: '/content/drive/MyDrive/security_mft/dfxml_files/temp_three_modified.dfxml'
+output_path: '/content/drive/MyDrive/security_mft/output/'  
+mode:  'run' #run or test
